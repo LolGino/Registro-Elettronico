@@ -6,10 +6,10 @@ public class Presenza
 	private LocalDateTime oraDataIngresso;
 	
 	
-	public Presenza(int numeroMatricola, int anno,int mese, int giorno, int ora, int minuti, int secondi)
+	public Presenza(int numeroMatricola, LocalDateTime oraDataIngresso)
 	{
 		this.setNumeroMatricola(numeroMatricola);
-		setOraDataIngresso(anno,mese,giorno,ora,minuti,secondi);
+		setOraDataIngresso(oraDataIngresso);
 	}
 
 
@@ -31,10 +31,14 @@ public class Presenza
 	}
 
 
-	public void setOraDataIngresso( int anno,int mese, int giorno, int ora, int minuti, int secondi) 
+	public void setOraDataIngresso( LocalDateTime oraDataIngresso) 
 	{
-		oraDataIngresso=LocalDateTime.of(anno,mese,giorno,ora,minuti,secondi);
+		oraDataIngresso=LocalDateTime.from(oraDataIngresso);
 		
+	}
+	public String toString()
+	{
+		return (getNumeroMatricola()+" "+getOraDataIngresso()+" ");
 	}
 	
 }
