@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ public class RegistroElettronico implements Serializable
 {
 	private Nodo head;
 	private int elementi;
+	public static final String workingDir = System.getProperty("user.dir")+"\\presenze\\";
 	
 	public RegistroElettronico()
 	{
@@ -93,16 +95,29 @@ public class RegistroElettronico implements Serializable
 		return r1;
 	}
 	
-	public void verificaPresenza(Presenza alunno) throws IOException
+	public static String[] elencaGiorni()
+	{
+		File filesPresenti=new File(workingDir); //classe File, crea una rappresentazione astratta dei file in una directory
+						
+		int numeroFilesPresenti=filesPresenti.list().length;
+		String[] elencoFile=new String[numeroFilesPresenti];
+		elencoProgetti=filesPresenti.list();
+		for (int i = 0; i < numeroFilesPresenti; i++)
+			elencoProgetti[i]=elencoProgetti[i].substring(0, elencoProgetti[i].length()-4); //tolgo l'estensione.bin ai nomi dei file
+		return elencoProgetti;		
+	}
+	
+	public void verificaPresenza(Presenza alunno) throws IOException, ClassNotFoundException
 	{
 		FileInputStream file= new FileInputStream(LocalDate.now().toString()+".bin");
 		ObjectInputStream reader=new ObjectInputStream(file);
 		RegistroElettronico r1;
+		r1=(RegistroElettronico)reader.readObject();
 		
-		
+			
 	}
 	
-	public void studentiInRitardo(LocalDateTime oraDataIngresso)
+	public RegistroElettronico studentiInRitardo(LocalDateTime oraDataIngresso) throws IOException, ClassNotFoundException
 	{
 		InputStreamReader input=new InputStreamReader(System.in);
 		BufferedReader tastiera= new BufferedReader(input);
@@ -116,6 +131,11 @@ public class RegistroElettronico implements Serializable
 		{
 			System.out.println("Errore nella lettura ");
 		}
+		FileInputStream file= new FileInputStream(s+".bin");
+		ObjectInputStream reader=new ObjectInputStream(file);
+		RegistroElettronico r1;
+		r1=(RegistroElettronico)reader.readObject();
+		return r1;
 		
 	}
 	

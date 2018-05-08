@@ -15,7 +15,7 @@ public class MainClass
 		
 		try 
 		{
-			r1.salvaPresenza("C:\\Users\\UTENTE.G01-NB02\\Documents\\Warkspace Visinoni\\Registro Elettronico\\presenze"+LocalDate.now().toString()+".bin");
+			r1.salvaPresenza(LocalDate.now().toString()+".bin");
 		} 
 		catch (IOException e) 
 		{
