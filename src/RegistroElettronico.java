@@ -99,6 +99,7 @@ public class RegistroElettronico implements Serializable
 		ObjectInputStream reader=new ObjectInputStream(file);
 		RegistroElettronico r1;
 		
+		
 	}
 	
 	public void studentiInRitardo(LocalDateTime oraDataIngresso)
@@ -118,31 +119,48 @@ public class RegistroElettronico implements Serializable
 		
 	}
 	
+	private Nodo getLinkPosizione(int posizione)
+	{
+		
+		Nodo p;
+		int n;
+		p=head;
+		n=1;
+			
+		while(p.getLink()!=null && n<posizione)
+		{
+			p=p.getLink();	//p va a puntare al nodo successivo
+			n++;
+		}
+		
+		return p;
+	}
 	
+	public Presenza getPresenza (int posizione) 
+	{
+		Nodo p=getLinkPosizione(posizione);
+		return p.getInfo();		
+	}
 	
 	
 	public void esportaCSV(String nomeFile) throws IOException,FileException
 	{
 		TextFile file=new TextFile (nomeFile,'W');
-		String personaCSV;
+		String alunnoCSV;
 		Presenza alunno;
 		
 		for (int i = 1; i < getElementi(); i++) 
 		{
 			alunno=getPresenza(i);
-			personaCSV=alunno.getNumeroMatricola()+";"+alunno.getOraDataIngresso()+";";
-			file.toFile(personaCSV);
+			alunnoCSV=alunno.getNumeroMatricola()+";"+alunno.getOraDataIngresso()+";";
+			file.toFile(alunnoCSV);
 		}
 		file.closeFile();
 	}
 	
 	
 
-	private Presenza getPresenza(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	
 	
 	
