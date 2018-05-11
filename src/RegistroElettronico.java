@@ -77,11 +77,13 @@ public class RegistroElettronico implements Serializable
 
 	public void salvaPresenza(String nomeFile) throws IOException
 	{
+		
 		FileOutputStream file= new FileOutputStream(nomeFile);
 		ObjectOutputStream writer=new ObjectOutputStream(file);
 		writer.writeObject(this);
 		writer.flush();
 		file.close();
+		nomeFile=
 	}
 	
 	public RegistroElettronico caricaFesta(String nomeFile) throws IOException, ClassNotFoundException
@@ -101,10 +103,10 @@ public class RegistroElettronico implements Serializable
 						
 		int numeroFilesPresenti=filesPresenti.list().length;
 		String[] elencoFile=new String[numeroFilesPresenti];
-		elencoProgetti=filesPresenti.list();
+		elencoFile=filesPresenti.list();
 		for (int i = 0; i < numeroFilesPresenti; i++)
-			elencoProgetti[i]=elencoProgetti[i].substring(0, elencoProgetti[i].length()-4); //tolgo l'estensione.bin ai nomi dei file
-		return elencoProgetti;		
+			elencoFile[i]=elencoFile[i].substring(0, elencoFile[i].length()-4); //tolgo l'estensione.bin ai nomi dei file
+		return elencoFile;		
 	}
 	
 	public void verificaPresenza(Presenza alunno) throws IOException, ClassNotFoundException
