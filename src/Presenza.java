@@ -15,6 +15,7 @@ public class Presenza implements Serializable
 	private int numeroMatricola;
 	private LocalDateTime oraDataIngresso;
 	
+<<<<<<< HEAD
 	/**
 	 * Metodo Costruttore
 	 * Per calcolare la data si una il metodo now(ora locale) della classe LocalDateTime.
@@ -28,9 +29,13 @@ public class Presenza implements Serializable
 	 * @param secondi rappresenta i secondi attuali(in cui l'alunno a timbrato)
 	 */
 	public Presenza(int numeroMatricola, int anno,int mese, int giorno, int ora, int minuti, int secondi)
+=======
+	
+	public Presenza(int numeroMatricola, LocalDateTime oraDataIngresso)
+>>>>>>> 22d4f8f3da859b1528af8df5f4f4f8f3d4678c99
 	{
 		this.setNumeroMatricola(numeroMatricola);
-		setOraDataIngresso(anno,mese,giorno,ora,minuti,secondi);
+		setOraDataIngresso(oraDataIngresso);
 	}
 
 	/**
@@ -68,6 +73,7 @@ public class Presenza implements Serializable
 	{
 		return oraDataIngresso;
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Metodo di tipo setter che consente di settare l'ora e la data in cui l'alunno ha timbrato
@@ -79,9 +85,18 @@ public class Presenza implements Serializable
 	 * @param secondi rappresenta i secondi attuali(in cui l'alunno a timbrato)
 	 */
 	public void setOraDataIngresso( int anno,int mese, int giorno, int ora, int minuti, int secondi) 
+=======
+
+
+	public void setOraDataIngresso( LocalDateTime oraDataIngresso) 
+>>>>>>> 22d4f8f3da859b1528af8df5f4f4f8f3d4678c99
 	{
-		oraDataIngresso=LocalDateTime.of(anno,mese,giorno,ora,minuti,secondi);
+		oraDataIngresso=LocalDateTime.from(oraDataIngresso);
 		
+	}
+	public String toString()
+	{
+		return (getNumeroMatricola()+" "+getOraDataIngresso()+" ");
 	}
 	
 	/**
